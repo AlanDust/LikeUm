@@ -11,5 +11,9 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
+  validates :role, presence: true
 
+  def admin?
+    role == "true"
+  end
 end
