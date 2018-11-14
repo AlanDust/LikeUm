@@ -4,12 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has many :speeches
-  has many :buzzwords, through: :speeches
+  has_many :speeches
+  has_many :buzzwords, through: :speeches
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
 
 end
