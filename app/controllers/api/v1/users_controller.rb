@@ -2,7 +2,7 @@ class Api::V1::UsersController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
 
   def index
-    render json: User.all
+    render json: { users: User.all, current_user: current_user }
   end
 
   def create
@@ -22,6 +22,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :encrypted_password, :timestamps, :id)
+    params.require(:user).permit(:first_name, :last_name, :email, :encrypted_password, :timestamps, :role, :id)
   end
 end
