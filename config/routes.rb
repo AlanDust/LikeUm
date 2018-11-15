@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      resources :buzzwords, only: [:index, :create]
-      resources :users, only: [:index, :create]
-      resources :speeches, only: [:index, :create]
+      resources :users, only: [:index, :create, :show] do
+        resources :buzzwords, only: [:index, :create, :show]
+        resources :speeches, only: [:index, :create, :show]
+      end
     end
   end
+  get '/', to: 'homes#index'
+  get '/users/:user_id/speeches', to: 'homes#index'
+  get '/users/:user_id/buzzwords', to: 'homes#index'
 end

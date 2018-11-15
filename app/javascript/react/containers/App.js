@@ -9,6 +9,9 @@ export const App = (props) => {
   return (
     <Router history={browserHistory}>
       <Route path='/' component={BuzzwordsContainer} />
+      <Route path='/users/:id/buzzwords' >
+        <indexRoute component={BuzzwordsContainer} />
+      </Route>
     </Router>
   )
 }
