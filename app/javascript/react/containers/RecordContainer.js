@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import BuzzwordTile from '../components/BuzzwordTile'
 import SpeechTile from '../components/SpeechTile'
+import InterimSpeechTile from '../components/InterimSpeechTile'
+import FinalSpeechTile from '../components/FinalSpeechTile'
 
 let SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 let recognition = new SpeechRecognition()
@@ -9,7 +11,7 @@ recognition.continous = true
 recognition.interimResults = true
 recognition.lang = 'en-US'
 
-class RecordTile extends Component {
+class RecordContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -74,11 +76,14 @@ class RecordTile extends Component {
     return(
       <div>
         <button id={mic} onClick={this.toggleListen} type="record">{recordingStatus}</button>
-        <div id='interim'></div>
-        <div id='final'></div>
+        <InterimSpeechTile
+        />
+
+        <FinalSpeechTile
+        />
       </div>
     )
   }
 }
 
-export default RecordTile;
+export default RecordContainer;
