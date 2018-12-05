@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RecordTile from '../components/RecordTile'
+import RecordContainer from './RecordContainer'
 import StatTile from '../components/StatTile'
 
 
@@ -20,7 +20,7 @@ class BuzzwordsContainer extends Component {
       <div>
         <h1 className="app-name"> Like Um </h1>
         <div className="large-12 medium-12 small-12 column record-button">
-          <RecordTile
+          <RecordContainer
           />
         </div>
         <div className="large-12 medium-12 small-12 column">
