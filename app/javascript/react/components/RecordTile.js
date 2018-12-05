@@ -15,28 +15,39 @@ class RecordTile extends Component {
     this.state = {
       listening: false,
       errors: [],
+      intermSpeech: "",
+      finalSpeech: ""
     }
-    this.toggleListen = this.toggleListen.bind(this)
-    this.handleListen = this.handleListen.bind(this)
+    this.toggleListen = this.toggleListen.bind(this);
+    this.handleListen = this.handleListen.bind(this);
   }
 
   toggleListen() {
-    this.setState({
-      listening: !this.state.listening
-    }, this.handleListen)
+    if(this.state.listening === false) {
+      this.setState({
+        listening: !this.state.listening
+      }, this.handleListen);
+    } else {
+      this.setState({
+        listening: !this.state.listening
+      }, this.handleListen);
+    }
   }
 
   handleListen(){
-    if (this.state.listening) {
-      recognition.start()
-      recognition.onend = () => recognition.start()
+    if(this.state.listening === true) {
+      recognition.start();
+      recognition.onend = () =>
+        this.setState({
+          listening: !this.state.listening
+        });
     } else {
-      recognition.stop()
+      recognition.stop();
     }
 
-    let finalTranscript = ''
+    let finalTranscript = '';
     recognition.onresult = event => {
-      let interimTranscript = ''
+      let interimTranscript = '';
 
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
@@ -50,9 +61,19 @@ class RecordTile extends Component {
 
   render() {
 
+    let mic;
+    let recordingStatus;
+    if(this.state.listening === false) {
+      mic = "micOn"
+      recordingStatus = "Rec"
+    } else {
+      mic = "micOff"
+      recordingStatus = "Stop"
+    }
+
     return(
       <div>
-        <button id='mic' onClick={this.toggleListen} />
+        <button id={mic} onClick={this.toggleListen} type="record">{recordingStatus}</button>
         <div id='interim'></div>
         <div id='final'></div>
       </div>
