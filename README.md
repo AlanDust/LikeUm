@@ -4,6 +4,7 @@
 Like-Um is an application that allows a user to speak into a microphone and receive important feedback about their speech based on the number of times they use common "filler" words such as "Like", "Um", "Uh", or other keywords they choose to keep track of.  
 
 Author: Alan Dust
+        Marc Marino - contributor
 
 Heroku Link: TBD
 
