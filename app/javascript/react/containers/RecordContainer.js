@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BuzzwordTile from '../components/BuzzwordTile'
 import SpeechTile from '../components/SpeechTile'
+import BuzzwordForm from '../components/BuzzwordForm'
 import InterimSpeechTile from '../components/InterimSpeechTile'
 import FinalSpeechTile from '../components/FinalSpeechTile'
 
@@ -17,11 +18,14 @@ class RecordContainer extends Component {
     this.state = {
       listening: false,
       errors: [],
+      newBuzzword: "",
       intermSpeech: "",
       finalSpeech: ""
     }
     this.toggleListen = this.toggleListen.bind(this);
     this.handleListen = this.handleListen.bind(this);
+    this.handleNewBuzzword = this.handleNewBuzzword.bind(this);
+    this.handleBuzzwordClear = this.handleBuzzwordClear.bind(this);
   }
 
   toggleListen() {
@@ -61,7 +65,18 @@ class RecordContainer extends Component {
     }
   }
 
+  handleNewBuzzword(event) {
+    this.setState({ newBuzzword: event.target.value })
+  }
+
+  handleBuzzwordClear(event) {
+    event.preventDefault();
+    this.setState({ newBuzzword: ""})
+  }
+
   render() {
+
+    console.log(this.state.newBuzzword)
 
     let mic;
     let recordingStatus;
@@ -75,6 +90,11 @@ class RecordContainer extends Component {
 
     return(
       <div>
+        <BuzzwordForm
+          newBuzzword={this.state.newBuzzword}
+          handleNewBuzzword={this.handleNewBuzzword}
+          handleBuzzwordClear={this.handleBuzzwordClear}
+        />
         <button id={mic} onClick={this.toggleListen} type="record">{recordingStatus}</button>
         <InterimSpeechTile
         />
