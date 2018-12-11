@@ -3,8 +3,11 @@ import React from 'react';
 const InterimSpeechTile = props => {
 
   return(
-    <div>
-      <div id='interim'></div>
+    <div id='interim'>
+      <h4>Interim Speech</h4>
+        <div>
+          {props.interimSpeech}
+        </div>
     </div>
   )
 }
