@@ -77,6 +77,8 @@ class RecordContainer extends Component {
   render() {
 
     console.log(this.state.newBuzzword)
+    console.log(`current user id is ${this.props.currentUserId}`)
+
 
     let mic;
     let recordingStatus;
