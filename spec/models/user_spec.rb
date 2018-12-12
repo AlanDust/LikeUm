@@ -11,3 +11,16 @@ describe "#admin?" do
     expect(user.admin?).to eq(true)
   end
 end
+
+RSpec.describe User, type: :model do
+  it { should have_valid(:first_name).when("Alan") }
+  it { should_not have_valid(:first_name).when(nil, "") }
+  it { should have_valid(:last_name).when("Dust") }
+  it { should_not have_valid(:last_name).when(nil, "") }
+  it { should have_valid(:email).when("alan.dust@gmail.com") }
+  it { should_not have_valid(:last_name).when(nil, "") }
+  it { should have_valid(:encrypted_password).when("Password") }
+  it { should_not have_valid(:encrypted_password).when(nil, "") }
+  it { should have_valid(:role).when("admin") }
+  it { should_not have_valid(:role).when(nil, "") }
+end
