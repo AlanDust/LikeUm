@@ -16,3 +16,8 @@ Technologies included in the project:
   -Ruby on Rails
   -React front end
   -Speech to text API
+
+
+Sweet Alerts
+$ npm install sweetalert --save
+$ npm install sweetalert-react

@@ -3,8 +3,11 @@ import React from 'react';
 const FinalSpeechTile = props => {
 
   return(
-    <div>
-      <div id='final'></div>
+    <div id='final'>
+      <h4>Final Speech</h4>
+        <div>
+          {props.finalSpeech}
+        </div>
     </div>
   )
 }

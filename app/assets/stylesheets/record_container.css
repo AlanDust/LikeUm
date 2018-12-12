@@ -31,3 +31,11 @@
   margin: 1em;
   width: 300px;
 }
+
+#buzz {
+  color: black;
+  border: #ccc 1px solid;
+  padding: 1em;
+  margin: 1em;
+  width: 300px;
+}
