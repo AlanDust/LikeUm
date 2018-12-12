@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import swal from 'sweetalert';
+import SweetAlert from 'sweetalert-react';
 import BuzzwordTile from '../components/BuzzwordTile'
 import SpeechTile from '../components/SpeechTile'
 import BuzzwordForm from '../components/BuzzwordForm'
@@ -90,7 +92,7 @@ class RecordContainer extends Component {
       speech: this.state.finalSpeech
     };
     let jsonPayload = JSON.stringify(formPayload);
-    fetch(`/api/v1/speeches`, {
+    fetch(`/api/v1/users/${this.props.currentUserId}/speeches`, {
       method: 'POST',
       body: jsonPayload,
       headers: {
@@ -109,21 +111,21 @@ class RecordContainer extends Component {
       })
       .then(response => response.json())
       .then(body => {
+        swal({ title: body.title, text: body.text})
+      })
+      .then
         (this.setState({
           newBuzzword: "",
           finalSpeech: ""
          })
         )
-      })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
 
-
   render() {
 
-    console.log(this.state.newBuzzword)
-    console.log(`current user id is ${this.props.currentUserId}`)
-
+    // console.log(this.state.newBuzzword)
+    // console.log(`current user id is ${this.props.currentUserId}`)
 
     let mic;
     let recordingStatus;
