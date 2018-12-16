@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 import SweetAlert from 'sweetalert-react';
 import BuzzwordTile from '../components/BuzzwordTile'
 import SpeechTile from '../components/SpeechTile'
-import BuzzwordForm from '../components/BuzzwordForm'
+import InfoForm from '../components/InfoForm'
 import InterimSpeechTile from '../components/InterimSpeechTile'
 import FinalSpeechTile from '../components/FinalSpeechTile'
 
@@ -20,14 +20,16 @@ class RecordContainer extends Component {
     this.state = {
       listening: false,
       errors: [],
+      newTitle: "",
       newBuzzword: "",
       interimSpeech: "",
       finalSpeech: ""
     }
     this.toggleListen = this.toggleListen.bind(this);
     this.handleListen = this.handleListen.bind(this);
+    this.handleNewTitle = this.handleNewTitle.bind(this);
     this.handleNewBuzzword = this.handleNewBuzzword.bind(this);
-    this.handleBuzzwordClear = this.handleBuzzwordClear.bind(this);
+    this.handleInfoClear = this.handleInfoClear.bind(this);
     this.handleSpeechClear = this.handleSpeechClear.bind(this);
     this.callPostToSpeech = this.callPostToSpeech.bind(this);
     this.postToSpeech = this.postToSpeech.bind(this);
@@ -70,13 +72,20 @@ class RecordContainer extends Component {
     }
   }
 
+  handleNewTitle(event) {
+    this.setState({ newTitle: event.target.value})
+  }
+
   handleNewBuzzword(event) {
     this.setState({ newBuzzword: event.target.value })
   }
 
-  handleBuzzwordClear(event) {
+  handleInfoClear(event) {
     event.preventDefault();
-    this.setState({ newBuzzword: ""})
+    this.setState({
+      newBuzzword: "",
+      newTitle: ""
+    })
   }
 
   handleSpeechClear(event) {
@@ -88,6 +97,7 @@ class RecordContainer extends Component {
 
   postToSpeech() {
     let formPayload = {
+      title: this.state.newTitle,
       word: this.state.newBuzzword,
       speech: this.state.finalSpeech
     };
@@ -115,6 +125,7 @@ class RecordContainer extends Component {
       })
       .then
         (this.setState({
+          newTitle: "",
           newBuzzword: "",
           finalSpeech: ""
          })
@@ -133,6 +144,7 @@ class RecordContainer extends Component {
   render() {
 
     // console.log(this.state.newBuzzword)
+    // console.log(this.state.newTitle)
     // console.log(`current user id is ${this.props.currentUserId}`)
 
     let mic;
@@ -147,10 +159,12 @@ class RecordContainer extends Component {
 
     return(
       <div>
-        <BuzzwordForm
+        <InfoForm
+          newTitle={this.state.newTitle}
+          handleNewTitle={this.handleNewTitle}
           newBuzzword={this.state.newBuzzword}
           handleNewBuzzword={this.handleNewBuzzword}
-          handleBuzzwordClear={this.handleBuzzwordClear}
+          handleInfoClear={this.handleInfoClear}
         />
         <button id={mic} onClick={this.toggleListen} type="record">{recordingStatus}</button>
         <InterimSpeechTile
