@@ -1,10 +1,17 @@
 import React from 'react';
 
-const BuzzwordForm = props => {
+const InfoForm = props => {
 
   return (
-    <div id='buzz'>
+    <div id='info'>
       <form>
+        <label>Title of Speech</label>
+        <input
+          type="text"
+          name="title"
+          value={props.newTitle}
+          onChange={props.handleNewTitle}
+        />
         <label>Your Buzzword To Track</label>
         <input
           type="text"
@@ -21,4 +28,4 @@ const BuzzwordForm = props => {
   )
 }
 
-export default BuzzwordForm;
+export default InfoForm;

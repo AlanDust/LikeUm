@@ -8,6 +8,7 @@ class Api::V1::SpeechesController < ApplicationController
   def create
 
     user_id = params[:user_id].to_i
+    title = params[:title]
     word = params[:word]
     speech = params[:speech]
 
@@ -25,6 +26,7 @@ class Api::V1::SpeechesController < ApplicationController
     end
 
     newSpeech = Speech.new(speech: speech,
+                           title: title,
                            user_id: user_id,
                            buzzword_id: buzzword_id)
 
