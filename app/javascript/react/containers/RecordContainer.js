@@ -29,6 +29,7 @@ class RecordContainer extends Component {
     this.handleNewBuzzword = this.handleNewBuzzword.bind(this);
     this.handleBuzzwordClear = this.handleBuzzwordClear.bind(this);
     this.handleSpeechClear = this.handleSpeechClear.bind(this);
+    this.callPostToSpeech = this.callPostToSpeech.bind(this);
     this.postToSpeech = this.postToSpeech.bind(this);
   }
 
@@ -85,8 +86,7 @@ class RecordContainer extends Component {
     })
   }
 
-  postToSpeech(event) {
-    event.preventDefault();
+  postToSpeech() {
     let formPayload = {
       word: this.state.newBuzzword,
       speech: this.state.finalSpeech
@@ -122,6 +122,14 @@ class RecordContainer extends Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
 
+    callPostToSpeech(event) {
+      if (this.props.currentUserId == '') {
+        swal({ title: "Sorry :(", text: "You need to be signed-in in order to save a speech"})
+      } else {
+        this.postToSpeech();
+      }
+    }
+
   render() {
 
     // console.log(this.state.newBuzzword)
@@ -151,7 +159,7 @@ class RecordContainer extends Component {
         <FinalSpeechTile
           finalSpeech={this.state.finalSpeech}
         />
-        <button onClick={this.postToSpeech}>Save Speech</button>
+        <button onClick={this.callPostToSpeech}>Save Speech</button>
         <button onClick={this.handleSpeechClear}>Clear Speech</button>
       </div>
     )
