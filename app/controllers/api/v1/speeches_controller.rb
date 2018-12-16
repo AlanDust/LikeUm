@@ -11,16 +11,27 @@ class Api::V1::SpeechesController < ApplicationController
     word = params[:word]
     speech = params[:speech]
 
-    buzzword_id = Buzzword.find_or_create_by(word: word).id
+    title_success = "SUCCESS!"
+    text_success = "Your speech has been recorded"
+
+    title_oops = "OOPS!"
+    text_oops = "Something went wrong recording your speech"
+
+    if Buzzword.find_or_create_by(word: word).id.nil?
+      buzzword_id = nil
+      text_oops =  "Your cannot save a speech without a buzzword."
+    else
+      buzzword_id = Buzzword.find_or_create_by(word: word).id
+    end
 
     newSpeech = Speech.new(speech: speech,
                            user_id: user_id,
                            buzzword_id: buzzword_id)
 
     if newSpeech.save
-      render json: { title: "SUCCESS!", text: "Your speech has been recorded" }
+      render json: { title: title_success, text: text_success }
     else
-      render json: { title: "OOPS!", text:  "Something went wrong recording your speech" }
+      render json: { title: title_oops, text: text_oops }
     end
 
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_185550) do
+ActiveRecord::Schema.define(version: 2018_12_14_214857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2018_11_14_185550) do
 
   create_table "speeches", force: :cascade do |t|
     t.text "speech", null: false
-    t.bigint "user_id"
-    t.bigint "buzzword_id"
+    t.bigint "user_id", null: false
+    t.bigint "buzzword_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["buzzword_id"], name: "index_speeches_on_buzzword_id"

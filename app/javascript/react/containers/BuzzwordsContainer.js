@@ -27,7 +27,9 @@ class BuzzwordsContainer extends Component {
     .then(body => {
       this.setState({ currentUserId: body.current_user.id });
     })
-    .catch(error => console.error(`Error in fetch: $(error.message)`));
+    .catch(error => {
+      console.error(`Error in fetch: ${error.message}`);
+    })
   }
 
 
