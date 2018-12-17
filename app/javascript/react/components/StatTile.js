@@ -4,21 +4,20 @@ const StatTile = props => {
 
   return(
     <div>
-      <h1 className="directions">Click on the speech below for more information</h1>
       <div className="large-1 medium-1 small-1 column">
-        #
+        <p>{props.id}</p>
       </div>
       <div className="large-5 medium-5 small-5 column">
-        timestamp
+        <p> {props.timestamp}</p>
       </div>
       <div className="large-2 medium-2 small-2 column">
-        time
+        <p>time of speech (need to add)</p>
       </div>
       <div className="large-2 medium-2 small-2 column">
-        word
+        <p>{props.buzzword}</p>
       </div>
       <div className="large-2 medium-2 small-2 column">
-        count
+        <p>count (need to add) </p>
       </div>
     </div>
   )
