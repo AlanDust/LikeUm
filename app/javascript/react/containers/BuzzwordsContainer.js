@@ -40,7 +40,6 @@ class BuzzwordsContainer extends Component {
     })
     .then((response) => response.json())
     .then((data) => {
-      debugger
       this.setState({ speechList: data })
     })
     .catch(error => {
@@ -60,6 +59,7 @@ class BuzzwordsContainer extends Component {
           speech = {speech.speech}
           timestamp = {timestamp}
           buzzword = {speech.buzzword_id}
+          currentUserId = {this.state.currentUserId}
         />
       )
 	  })
@@ -91,9 +91,9 @@ class BuzzwordsContainer extends Component {
             <p># of Iterations</p>
           </div>
         </div>
-        <div className="large-12 medium-12 small-12 column">
-          {speechTiles}
-        </div>
+          <div className="large-12 medium-12 small-12 column">
+            {speechTiles}
+          </div>
       </div>
     )
   }

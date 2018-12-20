@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get '/', to: 'homes#index'
   get '/users/:user_id/speeches', to: 'homes#index'
   get '/users/:user_id/buzzwords', to: 'homes#index'
+  get '/users/:user_id/speeches/:id', to: 'homes#index'
 end
