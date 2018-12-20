@@ -40,6 +40,7 @@ class BuzzwordsContainer extends Component {
     })
     .then((response) => response.json())
     .then((data) => {
+      debugger
       this.setState({ speechList: data })
     })
     .catch(error => {
@@ -50,12 +51,14 @@ class BuzzwordsContainer extends Component {
 
   render() {
     let speechTiles = this.state.speechList.map(speech => {
+      let timestamp = new Date(speech.updated_at).toLocaleString();
       return(
         <StatTile
           key = {speech.id}
           id = {speech.id}
+          title = {speech.title}
           speech = {speech.speech}
-          timestamp = {speech.updated_at}
+          timestamp = {timestamp}
           buzzword = {speech.buzzword_id}
         />
       )
@@ -70,6 +73,25 @@ class BuzzwordsContainer extends Component {
         </div>
         <div className="large-12 medium-12 small-12 column">
           <h1 className="directions">Click on the speech below for more information</h1>
+        </div>
+        <div className="large-12 medium-12 small-12 column">
+          <div className="large-1 medium-1 small-1 column">
+            <p>Title</p>
+          </div>
+          <div className="large-5 medium-5 small-5 column">
+            <p>Timestamp</p>
+          </div>
+          <div className="large-2 medium-2 small-2 column">
+            <p>Length</p>
+          </div>
+          <div className="large-2 medium-2 small-2 column">
+            <p>Buzzword</p>
+          </div>
+          <div className="large-2 medium-2 small-2 column">
+            <p># of Iterations</p>
+          </div>
+        </div>
+        <div className="large-12 medium-12 small-12 column">
           {speechTiles}
         </div>
       </div>
