@@ -10,7 +10,10 @@ export const App = (props) => {
     <Router history={browserHistory}>
       <Route path='/' component={BuzzwordsContainer} />
       <Route path='/users/:id/buzzwords' >
-        <indexRoute component={BuzzwordsContainer} />
+        <IndexRoute component={BuzzwordsContainer} />
+      </Route>
+      <Route path='/users/:id/speeches/:id' >
+        <IndexRoute component={SpeechesContainer} />
       </Route>
     </Router>
   )

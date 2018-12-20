@@ -4,7 +4,7 @@ const SpeechTile = props => {
 
   return(
     <div>
-      The entire speech goes here
+      {props.speech}
     </div>
   )
 }
