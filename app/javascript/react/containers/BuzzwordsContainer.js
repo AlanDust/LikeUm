@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import RecordContainer from './RecordContainer'
-import StatTile from '../components/StatTile'
+import RecordContainer from './RecordContainer';
+import StatTile from '../components/StatTile';
 
 
 class BuzzwordsContainer extends Component {
@@ -9,7 +9,9 @@ class BuzzwordsContainer extends Component {
     this.state = {
       errors: [],
       currentUserId: '',
-      speechList: []
+      speechList: [],
+      buzzwordList: [],
+      currentBuzzword: ''
     }
   }
 
@@ -25,7 +27,7 @@ class BuzzwordsContainer extends Component {
       }
     })
     .then(response => response.json())
-    .then(body => {
+    .then((body) => {
       this.setState({ currentUserId: body.current_user.id });
       return fetch(`/api/v1/users/${this.state.currentUserId}/speeches`)
     })
@@ -40,16 +42,35 @@ class BuzzwordsContainer extends Component {
     })
     .then((response) => response.json())
     .then((data) => {
-      this.setState({ speechList: data })
+      this.setState({ speechList: data });
+      return fetch(`/api/v1/users/${this.state.currentUserId}/buzzwords`)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+      throw(error);
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      this.setState({ buzzwordList: data })
     })
     .catch(error => {
       console.error(`Error in fetch: ${error.message}`);
     })
   }
 
-
   render() {
     let speechTiles = this.state.speechList.map(speech => {
+      let currentBuzzword
+      this.state.buzzwordList.forEach((buzzword) => {
+        if(buzzword.id === speech.buzzword_id) {
+          currentBuzzword = buzzword.word
+        }
+      })
       let timestamp = new Date(speech.updated_at).toLocaleString();
       return(
         <StatTile
@@ -58,11 +79,11 @@ class BuzzwordsContainer extends Component {
           title = {speech.title}
           speech = {speech.speech}
           timestamp = {timestamp}
-          buzzword = {speech.buzzword_id}
-          currentUserId = {this.state.currentUserId}
+          buzzword = {currentBuzzword}
         />
       )
 	  })
+
     return(
       <div>
         <h1 className="app-name"> Like Um </h1>
