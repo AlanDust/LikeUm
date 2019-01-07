@@ -12,7 +12,6 @@ class StatTile extends Component {
 
   }
 
-
   render (){
 
     return(
@@ -32,7 +31,7 @@ class StatTile extends Component {
               <p>{this.props.buzzword}</p>
             </div>
             <div className="large-2 medium-2 small-2 column">
-              <p>count (need to add) </p>
+              <p>{this.props.iterations} </p>
             </div>
           </Link>
         </div>
