@@ -33,6 +33,7 @@ class RecordContainer extends Component {
     this.handleSpeechClear = this.handleSpeechClear.bind(this);
     this.callPostToSpeech = this.callPostToSpeech.bind(this);
     this.postToSpeech = this.postToSpeech.bind(this);
+    this.stopListen = this.stopListen.bind(this);
   }
 
   toggleListen() {
@@ -40,20 +41,25 @@ class RecordContainer extends Component {
       this.setState({
         listening: !this.state.listening
       }, this.handleListen);
+      console.log("turning on from toggleListen")
     } else {
       this.setState({
         listening: !this.state.listening
-      }, this.handleListen);
+      }, this.stopListen);
+      console.log("turning off from toggleListen")
     }
+  }
+
+  stopListen(){
+    recognition.onend = () =>
+    recognition.stop();
   }
 
   handleListen(){
     if(this.state.listening === true) {
       recognition.start();
       recognition.onend = () =>
-        this.setState({
-          listening: !this.state.listening
-        });
+      recognition.start();
     } else {
       recognition.stop();
     }
@@ -142,10 +148,6 @@ class RecordContainer extends Component {
     }
 
   render() {
-
-    // console.log(this.state.newBuzzword)
-    // console.log(this.state.newTitle)
-    // console.log(`current user id is ${this.props.currentUserId}`)
 
     let mic;
     let recordingStatus;
