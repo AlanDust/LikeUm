@@ -23,7 +23,8 @@ class RecordContainer extends Component {
       newTitle: "",
       newBuzzword: "",
       interimSpeech: "",
-      finalSpeech: ""
+      finalSpeech: "",
+      totalSeconds: 0
     }
     this.toggleListen = this.toggleListen.bind(this);
     this.handleListen = this.handleListen.bind(this);
@@ -33,7 +34,6 @@ class RecordContainer extends Component {
     this.handleSpeechClear = this.handleSpeechClear.bind(this);
     this.callPostToSpeech = this.callPostToSpeech.bind(this);
     this.postToSpeech = this.postToSpeech.bind(this);
-    this.stopListen = this.stopListen.bind(this);
   }
 
   toggleListen() {
@@ -41,27 +41,42 @@ class RecordContainer extends Component {
       this.setState({
         listening: !this.state.listening
       }, this.handleListen);
-      console.log("turning on from toggleListen")
     } else {
       this.setState({
         listening: !this.state.listening
-      }, this.stopListen);
-      console.log("turning off from toggleListen")
+      }, this.handleListen);
     }
   }
 
-  stopListen(){
-    recognition.onend = () =>
-    recognition.stop();
-  }
-
   handleListen(){
+
+    let intervalInput = document.getElementById('seconds')
+    let intervalSeconds;
+    let myTimer;
+
+    function startTimer() {
+      intervalInput.value = ++intervalSeconds
+    }
+
     if(this.state.listening === true) {
+
       recognition.start();
       recognition.onend = () =>
       recognition.start();
+
+      intervalSeconds = 0;
+      myTimer = setInterval(startTimer, 1000);
+
     } else {
+      recognition.onend = () =>
       recognition.stop();
+
+      function stopTimer() {
+        clearInterval(myTimer)
+      }
+
+      this.setState({ totalSeconds: intervalInput.value})
+      intervalInput.value = 0;
     }
 
     let finalTranscript = '';
@@ -148,7 +163,7 @@ class RecordContainer extends Component {
     }
 
   render() {
-
+    debugger
     let mic;
     let recordingStatus;
     if(this.state.listening === false) {
@@ -169,6 +184,7 @@ class RecordContainer extends Component {
           handleInfoClear={this.handleInfoClear}
         />
         <button id={mic} onClick={this.toggleListen} type="record">{recordingStatus}</button>
+        <label>Seconds:</label> <input id="seconds"></input>
         <InterimSpeechTile
           interimSpeech={this.state.interimSpeech}
         />

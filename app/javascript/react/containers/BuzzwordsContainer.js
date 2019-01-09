@@ -64,6 +64,7 @@ class BuzzwordsContainer extends Component {
   }
 
   render() {
+    
     let speechTiles = this.state.speechList.map(speech => {
       let currentBuzzword
       let speechIndex
