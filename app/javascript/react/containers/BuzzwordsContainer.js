@@ -42,6 +42,7 @@ class BuzzwordsContainer extends Component {
     })
     .then((response) => response.json())
     .then((data) => {
+      debugger
       this.setState({ speechList: data });
       return fetch(`/api/v1/users/${this.state.currentUserId}/buzzwords`)
     })
@@ -64,7 +65,6 @@ class BuzzwordsContainer extends Component {
   }
 
   render() {
-    
     let speechTiles = this.state.speechList.map(speech => {
       let currentBuzzword
       let speechIndex
@@ -87,7 +87,6 @@ class BuzzwordsContainer extends Component {
         }
       })
       let timestamp = new Date(speech.updated_at).toLocaleString();
-
       return(
         <StatTile
           key = {speech.id}
@@ -97,6 +96,7 @@ class BuzzwordsContainer extends Component {
           timestamp = {timestamp}
           buzzword = {currentBuzzword}
           iterations = {speechIndex}
+          timer = {speech.timer}
         />
       )
 	  })

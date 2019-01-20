@@ -25,7 +25,7 @@ class StatTile extends Component {
               <p> {this.props.timestamp}</p>
             </div>
             <div className="large-2 medium-2 small-2 column">
-              <p>time of speech (need to add)</p>
+              <p>{this.props.timer} seconds</p>
             </div>
             <div className="large-2 medium-2 small-2 column">
               <p>{this.props.buzzword}</p>

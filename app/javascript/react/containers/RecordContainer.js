@@ -51,32 +51,30 @@ class RecordContainer extends Component {
   handleListen(){
 
     let intervalInput = document.getElementById('seconds')
-    let intervalSeconds;
+    let intervalSeconds = 0;
     let myTimer;
 
-    function startTimer() {
-      intervalInput.value = ++intervalSeconds
+    let startTimer = () => {
+      if(this.state.listening === true){
+        intervalInput.value = ++intervalSeconds;
+      } else {
+        clearInterval(myTimer);
+        this.setState({ totalSeconds: intervalInput.value});
+      }
+    };
+
+    if(this.state.listening === true) {
+      myTimer = setInterval(startTimer, 1000);
     }
 
     if(this.state.listening === true) {
-
       recognition.start();
       recognition.onend = () =>
       recognition.start();
 
-      intervalSeconds = 0;
-      myTimer = setInterval(startTimer, 1000);
-
-    } else {
+    } else if(this.state.listening === false) {
       recognition.onend = () =>
       recognition.stop();
-
-      function stopTimer() {
-        clearInterval(myTimer)
-      }
-
-      this.setState({ totalSeconds: intervalInput.value})
-      intervalInput.value = 0;
     }
 
     let finalTranscript = '';
@@ -120,9 +118,11 @@ class RecordContainer extends Component {
     let formPayload = {
       title: this.state.newTitle,
       word: this.state.newBuzzword,
-      speech: this.state.finalSpeech
+      speech: this.state.finalSpeech,
+      timer: this.state.totalSeconds
     };
     let jsonPayload = JSON.stringify(formPayload);
+    debugger
     fetch(`/api/v1/users/${this.props.currentUserId}/speeches`, {
       method: 'POST',
       body: jsonPayload,
@@ -148,7 +148,8 @@ class RecordContainer extends Component {
         (this.setState({
           newTitle: "",
           newBuzzword: "",
-          finalSpeech: ""
+          finalSpeech: "",
+          totalSeconds: 0
          })
         )
       .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -163,7 +164,6 @@ class RecordContainer extends Component {
     }
 
   render() {
-    debugger
     let mic;
     let recordingStatus;
     if(this.state.listening === false) {
