@@ -11,6 +11,7 @@ class Api::V1::SpeechesController < ApplicationController
     title = params[:title]
     word = params[:word]
     speech = params[:speech]
+    timer = params[:timer]
 
     title_success = "SUCCESS!"
     text_success = "Your speech has been recorded"
@@ -28,7 +29,8 @@ class Api::V1::SpeechesController < ApplicationController
     newSpeech = Speech.new(speech: speech,
                            title: title,
                            user_id: user_id,
-                           buzzword_id: buzzword_id)
+                           buzzword_id: buzzword_id,
+                           timer: timer)
 
     if newSpeech.save
       render json: { title: title_success, text: text_success }
