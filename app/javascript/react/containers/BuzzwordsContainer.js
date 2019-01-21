@@ -42,7 +42,6 @@ class BuzzwordsContainer extends Component {
     })
     .then((response) => response.json())
     .then((data) => {
-      debugger
       this.setState({ speechList: data });
       return fetch(`/api/v1/users/${this.state.currentUserId}/buzzwords`)
     })

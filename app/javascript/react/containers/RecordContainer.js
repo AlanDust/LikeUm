@@ -58,8 +58,8 @@ class RecordContainer extends Component {
       if(this.state.listening === true){
         intervalInput.value = ++intervalSeconds;
       } else {
-        clearInterval(myTimer);
         this.setState({ totalSeconds: intervalInput.value});
+        clearInterval(myTimer);
       }
     };
 
