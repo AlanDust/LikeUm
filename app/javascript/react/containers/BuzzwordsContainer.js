@@ -102,7 +102,12 @@ class BuzzwordsContainer extends Component {
 
     return(
       <div>
-        <h1 className="app-name"> Like Um </h1>
+        <h1 className="app-name"> Speech Helper Pro </h1>
+        <h4 className="app-description"> Welcome to Speech Helper Pro.  You must sign up and sign in to save a speech.
+        Please type in a title of the speech you want to record, as well as a word that you would like to keep track of.
+        Click the record button and start speaking!  To stop recording, click on the Stop button.  Refresh the page to
+        see your speech statistics below.  Click on the statistic to see your speech as well as the location of the word
+        you are keeping track of within the speech.  Enjoy! </h4>
         <div className="large-12 medium-12 small-12 column record-button">
           <RecordContainer
             currentUserId={this.state.currentUserId}
@@ -111,26 +116,28 @@ class BuzzwordsContainer extends Component {
         <div className="large-12 medium-12 small-12 column">
           <h1 className="directions">Click on the speech below for more information</h1>
         </div>
-        <div className="large-12 medium-12 small-12 column">
-          <div className="large-1 medium-1 small-1 column">
-            <p>Title</p>
+        <div className="all-stat-tiles">
+          <div className="large-12 medium-12 small-12 column individual-speech-tile-titles">
+            <div className="large-1 medium-1 small-1 column">
+              <p className="font-size-stat-tile-title">Title</p>
+            </div>
+            <div className="large-5 medium-5 small-5 column">
+              <p className="font-size-stat-tile-title">Timestamp</p>
+            </div>
+            <div className="large-2 medium-2 small-2 column stats">
+              <p className="font-size-stat-tile-title">Length</p>
+            </div>
+            <div className="large-2 medium-2 small-2 column stats">
+              <p className="font-size-stat-tile-title">Buzzword</p>
+            </div>
+            <div className="large-2 medium-2 small-2 column stats">
+              <p className="font-size-stat-tile-title"># of Iterations</p>
+            </div>
           </div>
-          <div className="large-5 medium-5 small-5 column">
-            <p>Timestamp</p>
-          </div>
-          <div className="large-2 medium-2 small-2 column">
-            <p>Length</p>
-          </div>
-          <div className="large-2 medium-2 small-2 column">
-            <p>Buzzword</p>
-          </div>
-          <div className="large-2 medium-2 small-2 column">
-            <p># of Iterations</p>
-          </div>
-        </div>
-          <div className="large-12 medium-12 small-12 column">
+          <div className="large-12 medium-12 small-12 column individual-speech-tile">
             {speechTiles}
           </div>
+        </div>
       </div>
     )
   }

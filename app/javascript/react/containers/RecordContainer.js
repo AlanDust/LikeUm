@@ -122,7 +122,6 @@ class RecordContainer extends Component {
       timer: this.state.totalSeconds
     };
     let jsonPayload = JSON.stringify(formPayload);
-    debugger
     fetch(`/api/v1/users/${this.props.currentUserId}/speeches`, {
       method: 'POST',
       body: jsonPayload,
@@ -191,8 +190,8 @@ class RecordContainer extends Component {
         <FinalSpeechTile
           finalSpeech={this.state.finalSpeech}
         />
-        <button onClick={this.callPostToSpeech}>Save Speech</button>
-        <button onClick={this.handleSpeechClear}>Clear Speech</button>
+        <button className="save-or-clear" onClick={this.callPostToSpeech}>Save Speech</button>
+        <button className="save-or-clear" onClick={this.handleSpeechClear}>Clear Speech</button>
       </div>
     )
   }

@@ -1,5 +1,16 @@
 .app-name {
   text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.app-description {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  font-size: 1.3vw;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .record-button {
@@ -8,4 +19,50 @@
 
 .directions {
   text-align: center;
+}
+
+.individual-speech-tile-titles {
+  background-color: gray;
+  font-size: 1vw;
+  color: white;
+}
+
+.individual-speech-tile {
+  background-color: lightgray;
+  font-size: 1vw;
+}
+
+.individual-stat-tile{
+  border-bottom: #ccc 1px solid;
+}
+
+.all-stat-tiles {
+  border: #ccc 1px solid;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  font-size: 1vw;
+}
+
+.stats {
+  padding: 0px;
+  font-size: 1vw;
+}
+
+.stats-two {
+  padding-left: .4rem;
+  font-size: 1vw;
+}
+
+.app-name {
+  margin-bottom: 5px;
+}
+
+.font-size-stat-tile {
+  font-size: 1.5vw;
+}
+
+.font-size-stat-tile-title {
+  font-size: 1.5vw;
+  margin-bottom: 0px;
 }
