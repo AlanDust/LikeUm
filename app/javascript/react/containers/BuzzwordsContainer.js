@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import RecordContainer from './RecordContainer';
 import StatTile from '../components/StatTile';
 
-
 class BuzzwordsContainer extends Component {
   constructor(props) {
     super(props);
@@ -96,6 +95,7 @@ class BuzzwordsContainer extends Component {
           buzzword = {currentBuzzword}
           iterations = {speechIndex}
           timer = {speech.timer}
+          currentUserId = {this.state.currentUserId}
         />
       )
 	  })
@@ -106,8 +106,7 @@ class BuzzwordsContainer extends Component {
         <h4 className="app-description"> Welcome to Speech Helper Pro.  You must sign up and sign in to save a speech.
         Please type in a title of the speech you want to record, as well as a word that you would like to keep track of.
         Click the record button and start speaking!  To stop recording, click on the Stop button.  Refresh the page to
-        see your speech statistics below.  Click on the statistic to see your speech as well as the location of the word
-        you are keeping track of within the speech.  Enjoy! </h4>
+        see your speech statistics below.  Click on the link below to see your full speech.  Enjoy! </h4>
         <div className="large-12 medium-12 small-12 column record-button">
           <RecordContainer
             currentUserId={this.state.currentUserId}
