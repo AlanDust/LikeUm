@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import SweetAlert from 'sweetalert-react';
-import BuzzwordTile from '../components/BuzzwordTile'
-import SpeechTile from '../components/SpeechTile'
 import InfoForm from '../components/InfoForm'
 import InterimSpeechTile from '../components/InterimSpeechTile'
 import FinalSpeechTile from '../components/FinalSpeechTile'
