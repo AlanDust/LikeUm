@@ -64,40 +64,42 @@ class BuzzwordsContainer extends Component {
 
   render() {
     let speechTiles = this.state.speechList.map(speech => {
-      let currentBuzzword
-      let speechIndex
-      let iterations
-      this.state.buzzwordList.forEach((buzzword) => {
-        if(buzzword.id === speech.buzzword_id) {
-          currentBuzzword = buzzword.word
-          let numberOfIterations = () => {
-            speechIndex = 0;
-            let fullSpeech = speech.speech;
-            let speechArray = fullSpeech.split(" ");
-            speechArray.forEach((word) => {
-              if(word === currentBuzzword) {
-                speechIndex ++;
-              }
-            });
-            return speechIndex;
-          };
-          numberOfIterations();
-        }
-      })
-      let timestamp = new Date(speech.updated_at).toLocaleString();
-      return(
-        <StatTile
-          key = {speech.id}
-          id = {speech.id}
-          title = {speech.title}
-          speech = {speech.speech}
-          timestamp = {timestamp}
-          buzzword = {currentBuzzword}
-          iterations = {speechIndex}
-          timer = {speech.timer}
-          currentUserId = {this.state.currentUserId}
-        />
-      )
+      if(speech.user_id === this.state.currentUserId) {
+        let currentBuzzword
+        let speechIndex
+        let iterations
+        this.state.buzzwordList.forEach((buzzword) => {
+          if(buzzword.id === speech.buzzword_id) {
+            currentBuzzword = buzzword.word
+            let numberOfIterations = () => {
+              speechIndex = 0;
+              let fullSpeech = speech.speech;
+              let speechArray = fullSpeech.split(" ");
+              speechArray.forEach((word) => {
+                if(word === currentBuzzword) {
+                  speechIndex ++;
+                }
+              });
+              return speechIndex;
+            };
+            numberOfIterations();
+          }
+        })
+        let timestamp = new Date(speech.updated_at).toLocaleString();
+        return(
+          <StatTile
+            key = {speech.id}
+            id = {speech.id}
+            title = {speech.title}
+            speech = {speech.speech}
+            timestamp = {timestamp}
+            buzzword = {currentBuzzword}
+            iterations = {speechIndex}
+            timer = {speech.timer}
+            currentUserId = {this.state.currentUserId}
+          />
+        )
+      }
 	  })
 
     return(
