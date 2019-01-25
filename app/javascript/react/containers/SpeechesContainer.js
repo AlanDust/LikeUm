@@ -7,6 +7,8 @@ class SpeechesContainer extends Component {
       errors: [],
       speech: "",
       currentUserId: "",
+      buzzwordList: [],
+      buzzwordId: ""
     }
   }
 
@@ -39,8 +41,22 @@ class SpeechesContainer extends Component {
     .then((data) => {
       this.setState({
         speech: data.speech,
-
-      })
+        buzzwordId: data.buzzword_id
+      });
+      return fetch(`/api/v1/users/${this.state.currentUserId}/buzzwords`)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+      throw(error);
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      this.setState({ buzzwordList: data })
     })
     .catch(error => {
       console.error(`Error in fetch: ${error.message}`);
@@ -48,10 +64,38 @@ class SpeechesContainer extends Component {
   }
 
   render() {
+    let currentBuzzword;
+    let fullSpeech;
+    let newString;
+    let newText;
+    this.state.buzzwordList.forEach((buzzword) => {
+      if(buzzword.id === this.state.buzzwordId) {
+        currentBuzzword = buzzword.word
+      }
+    })
+
+    fullSpeech = this.state.speech
+    newString = currentBuzzword;
+    let pattern = `\\b${currentBuzzword}\\b`
+    let regex = new RegExp(pattern, 'g')
+    newText = fullSpeech.replace(regex, newString);
+
+    let count = 1
+    let speech = ""
+    let splitSpeech = newText.split(" ")
+    splitSpeech.forEach((word) => {
+      if(word !== currentBuzzword){
+        speech += word + " "
+      } else {
+        speech += count + ") " + word + " "
+        count ++
+      }
+    })
+
     return(
       <div>
         <h1 className="show-page-headers">Full Speech:</h1>
-        <h1 className="show-page-content">{this.state.speech}</h1>
+        <p className="show-page-content">{speech}</p>
       </div>
     )
   }
