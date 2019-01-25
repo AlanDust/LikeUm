@@ -11,3 +11,9 @@
   margin-right: auto;
   width: 80%;
 }
+
+.red-word {
+  color: red;
+  font-size: 10px;
+  font-family: sans-serif;
+}
