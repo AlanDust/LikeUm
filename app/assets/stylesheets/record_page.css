@@ -2,15 +2,18 @@
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  font-family: 'Lora', serif;
+  font-size: 5vw;
 }
 
 .app-description {
   margin-left: auto;
   margin-right: auto;
-  width: 90%;
+  width: 70%;
   font-size: 1.3vw;
   text-align: center;
   margin-top: 1rem;
+  font-family: 'Lora', serif;
 }
 
 .record-button {
@@ -19,6 +22,7 @@
 
 .directions {
   text-align: center;
+  font-family: 'Lora', serif;
 }
 
 .individual-speech-tile-titles {
@@ -42,27 +46,37 @@
   margin-right: auto;
   width: 90%;
   font-size: 1vw;
+  font-family: 'Lora', serif;
 }
 
 .stats {
   padding: 0px;
   font-size: 1vw;
+  font-family: 'Lora', serif;
 }
 
 .stats-two {
   padding-left: .4rem;
   font-size: 1vw;
+  font-family: 'Lora', serif;
 }
 
 .app-name {
   margin-bottom: 5px;
+  font-family: 'Lora', serif;
 }
 
 .font-size-stat-tile {
   font-size: 1.5vw;
+  font-family: 'Lora', serif;
 }
 
 .font-size-stat-tile-title {
   font-size: 1.5vw;
   margin-bottom: 0px;
+  font-family: 'Lora', serif;
+}
+
+.recording-status {
+  color:red;
 }

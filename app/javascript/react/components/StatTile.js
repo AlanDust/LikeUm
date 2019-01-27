@@ -18,10 +18,10 @@ class StatTile extends Component {
       <div>
         <div className="large-12 medium-12 small-12 column individual-stat-tile">
           <Link to={`/users/${this.props.currentUserId}/speeches/${this.props.id}`}>
-            <div className="large-1 medium-1 small-1 column stats">
+            <div className="large-2 medium-2 small-2 column stats">
               <p className="font-size-stat-tile">{this.props.title}</p>
             </div>
-            <div className="large-5 medium-5 small-5 column stats">
+            <div className="large-4 medium-4 small-4 column stats">
               <p className="font-size-stat-tile"> {this.props.timestamp}</p>
             </div>
             <div className="large-2 medium-2 small-2 column stats">

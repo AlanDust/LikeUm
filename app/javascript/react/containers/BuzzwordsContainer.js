@@ -119,10 +119,10 @@ class BuzzwordsContainer extends Component {
         </div>
         <div className="all-stat-tiles">
           <div className="large-12 medium-12 small-12 column individual-speech-tile-titles">
-            <div className="large-1 medium-1 small-1 column">
+            <div className="large-2 medium-2 small-2 column">
               <p className="font-size-stat-tile-title">Title</p>
             </div>
-            <div className="large-5 medium-5 small-5 column">
+            <div className="large-4 medium-4 small-4 column">
               <p className="font-size-stat-tile-title">Timestamp</p>
             </div>
             <div className="large-2 medium-2 small-2 column stats">

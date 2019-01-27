@@ -15,3 +15,12 @@
  *= require foundation_and_overrides
 
  */
+
+body{
+  background-image: linear-gradient(to right, black,royalblue,lightblue,lightblue,lightblue,lightblue,lightblue,royalblue, black);
+  background-repeat: repeat;
+}
+
+input{
+  background-color: #E6F0FF;
+}

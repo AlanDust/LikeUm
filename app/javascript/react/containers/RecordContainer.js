@@ -164,11 +164,11 @@ class RecordContainer extends Component {
     let mic;
     let recordingStatus;
     if(this.state.listening === false) {
-      mic = "micOn"
-      recordingStatus = "Rec"
+      mic = "fa fa-microphone fa-5x"
+      recordingStatus="Click To Start Recording"
     } else {
-      mic = "micOff"
-      recordingStatus = "Stop"
+      mic = "fa fa-microphone-slash fa-5x"
+      recordingStatus="Click To Stop Recording"
     }
 
     return(
@@ -180,7 +180,8 @@ class RecordContainer extends Component {
           handleNewBuzzword={this.handleNewBuzzword}
           handleInfoClear={this.handleInfoClear}
         />
-        <button id={mic} onClick={this.toggleListen} type="record">{recordingStatus}</button>
+        <p className="recording-status">{recordingStatus}</p>
+        <i className={mic} aria-hidden="true" onClick={this.toggleListen}></i>
         <label>Seconds:</label> <input id="seconds"></input>
         <InterimSpeechTile
           interimSpeech={this.state.interimSpeech}
