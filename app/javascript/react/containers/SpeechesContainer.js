@@ -95,7 +95,11 @@ class SpeechesContainer extends Component {
     return(
       <div>
         <h1 className="show-page-headers">Full Speech:</h1>
-        <p className="show-page-content">{speech}</p>
+        <div className = "show-page-content">
+          <i className="fas fa-quote-left fas-4x"></i>
+          <span className="show-page-content">{speech}</span>
+          <i className="fas fa-quote-right fas-4x"></i>
+        </div>
       </div>
     )
   }

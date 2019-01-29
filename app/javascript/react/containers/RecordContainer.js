@@ -90,7 +90,7 @@ class RecordContainer extends Component {
   }
 
   handleNewTitle(event) {
-    this.setState({ newTitle: event.target.value})
+    this.setState({ newTitle: event.target.value })
   }
 
   handleNewBuzzword(event) {
@@ -115,7 +115,7 @@ class RecordContainer extends Component {
   postToSpeech() {
     let formPayload = {
       title: this.state.newTitle,
-      word: this.state.newBuzzword,
+      word: this.state.newBuzzword.toLowerCase(),
       speech: this.state.finalSpeech,
       timer: this.state.totalSeconds
     };
